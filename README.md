@@ -2,6 +2,8 @@
 
 A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/), designed by **VULGA**.
 
+> ✅ Tested and fully compatible with **Authentik version 2025.6.4**
+
 ## ✨ Features
 
 - Modern **glassmorphism** design  
@@ -23,9 +25,14 @@ Feel free to use, modify, or extend the theme.
 
 1. Clone or download this repository.
 2. Copy the CSS file into your Authentik custom theme section:
-   - Admin → Interface → Customization → Custom CSS
-3. Paste the contents or point Authentik to use the custom file if hosted.
+   - Admin → System → Brands → Choose your brand and edit it → Brand settings → Custom CSS
 4. Save and refresh the login page.
+   
+## ⚠️ Cloudflare Notice
+
+If you're using **Cloudflare** with a **proxied domain**, you might experience issues due to cached CSS.  
+👉 In that case, **purge your Cloudflare cache** to ensure changes take effect.
+
 
 ## 🔓 License
 
