@@ -1,0 +1,973 @@
+/* ===== CUSTOMISATION BOUTONS OUI/NON ===== */
+
+/* Container principal pour les boutons Oui/Non */
+.pf-c-login .pf-c-form__actions,
+.pf-c-login .pf-c-form__group-control,
+body:has(.pf-c-login) .pf-c-form__actions,
+body:has(.pf-c-login) .pf-c-form__group-control {
+    display: flex !important;
+    gap: 15px !important;
+    margin-top: 25px !important;
+    justify-content: space-between !important;
+}
+
+/* Styles de base pour les boutons Oui/Non - Sélecteurs génériques */
+.pf-c-login .pf-c-form__actions button,
+.pf-c-login .pf-c-form__group-control button,
+body:has(.pf-c-login) .pf-c-form__actions button,
+body:has(.pf-c-login) .pf-c-form__group-control button,
+.pf-c-login button[type="button"],
+body:has(.pf-c-login) button[type="button"] {
+    border-radius: 14px !important;
+    padding: 16px 32px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    text-transform: none !important;
+    border: none !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    min-width: 120px !important;
+    cursor: pointer !important;
+    outline: none !important;
+}
+
+/* Bouton OUI - Premier bouton (généralement à gauche) */
+.pf-c-login .pf-c-form__actions button:first-child,
+.pf-c-login .pf-c-form__group-control button:first-child,
+body:has(.pf-c-login) .pf-c-form__actions button:first-child,
+body:has(.pf-c-login) .pf-c-form__group-control button:first-child,
+.pf-c-login button[type="button"]:first-of-type,
+body:has(.pf-c-login) button[type="button"]:first-of-type {
+    background: rgba(40, 167, 69, 0.2) !important;
+    color: white !important;
+    border: 1.5px solid rgba(40, 167, 69, 0.4) !important;
+    box-shadow: 
+        0 6px 20px rgba(40, 167, 69, 0.15),
+        0 2px 8px rgba(40, 167, 69, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Effet de reflet sur le bouton Oui */
+.pf-c-login .pf-c-form__actions button:first-child::before,
+.pf-c-login .pf-c-form__group-control button:first-child::before,
+body:has(.pf-c-login) .pf-c-form__actions button:first-child::before,
+body:has(.pf-c-login) .pf-c-form__group-control button:first-child::before,
+.pf-c-login button[type="button"]:first-of-type::before,
+body:has(.pf-c-login) button[type="button"]:first-of-type::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+.pf-c-login button:contains("Oui"):hover::before,
+.pf-c-login button:contains("Yes"):hover::before,
+body:has(.pf-c-login) button:contains("Oui"):hover::before,
+body:has(.pf-c-login) button:contains("Yes"):hover::before {
+    left: 100%;
+}
+
+.pf-c-login button:contains("Oui"):hover,
+.pf-c-login button:contains("Yes"):hover,
+body:has(.pf-c-login) button:contains("Oui"):hover,
+body:has(.pf-c-login) button:contains("Yes"):hover {
+    background: rgba(40, 167, 69, 0.35) !important;
+    border-color: rgba(40, 167, 69, 0.6) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 10px 30px rgba(40, 167, 69, 0.25),
+        0 4px 12px rgba(40, 167, 69, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Bouton NON - Style secondaire */
+.pf-c-login button:contains("Non"),
+.pf-c-login button:contains("No"),
+body:has(.pf-c-login) button:contains("Non"),
+body:has(.pf-c-login) button:contains("No") {
+    background: rgba(220, 53, 69, 0.15) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 1.5px solid rgba(220, 53, 69, 0.3) !important;
+    box-shadow: 
+        0 4px 15px rgba(220, 53, 69, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Effet de reflet sur le bouton Non */
+.pf-c-login button:contains("Non")::before,
+.pf-c-login button:contains("No")::before,
+body:has(.pf-c-login) button:contains("Non")::before,
+body:has(.pf-c-login) button:contains("No")::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+.pf-c-login button:contains("Non"):hover::before,
+.pf-c-login button:contains("No"):hover::before,
+body:has(.pf-c-login) button:contains("Non"):hover::before,
+body:has(.pf-c-login) button:contains("No"):hover::before {
+    left: 100%;
+}
+
+.pf-c-login button:contains("Non"):hover,
+.pf-c-login button:contains("No"):hover,
+body:has(.pf-c-login) button:contains("Non"):hover,
+body:has(.pf-c-login) button:contains("No"):hover {
+    background: rgba(220, 53, 69, 0.25) !important;
+    border-color: rgba(220, 53, 69, 0.45) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 
+        0 8px 25px rgba(220, 53, 69, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* S'assurer que le texte des boutons reste au-dessus */
+.pf-c-login button:contains("Oui") *,
+.pf-c-login button:contains("Non") *,
+.pf-c-login button:contains("Yes") *,
+.pf-c-login button:contains("No") *,
+body:has(.pf-c-login) button:contains("Oui") *,
+body:has(.pf-c-login) button:contains("Non") *,
+body:has(.pf-c-login) button:contains("Yes") *,
+body:has(.pf-c-login) button:contains("No") * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* États actifs/focus pour les boutons */
+.pf-c-login button:contains("Oui"):active,
+.pf-c-login button:contains("Yes"):active,
+body:has(.pf-c-login) button:contains("Oui"):active,
+body:has(.pf-c-login) button:contains("Yes"):active {
+    transform: translateY(0px) !important;
+    box-shadow: 
+        0 4px 15px rgba(40, 167, 69, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pf-c-login button:contains("Non"):active,
+.pf-c-login button:contains("No"):active,
+body:has(.pf-c-login) button:contains("Non"):active,
+body:has(.pf-c-login) button:contains("No"):active {
+    transform: translateY(0px) !important;
+    box-shadow: 
+        0 4px 15px rgba(220, 53, 69, 0.15),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Animation d'apparition pour les boutons */
+@keyframes buttonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.pf-c-login button:contains("Oui"),
+.pf-c-login button:contains("Non"),
+.pf-c-login button:contains("Yes"),
+.pf-c-login button:contains("No"),
+body:has(.pf-c-login) button:contains("Oui"),
+body:has(.pf-c-login) button:contains("Non"),
+body:has(.pf-c-login) button:contains("Yes"),
+body:has(.pf-c-login) button:contains("No") {
+    animation: buttonFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both !important;
+}
+
+/* Responsive pour les boutons Oui/Non */
+@media (max-width: 768px) {
+    .pf-c-login .pf-c-form__actions,
+    body:has(.pf-c-login) .pf-c-form__actions {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .pf-c-login button:contains("Oui"),
+    .pf-c-login button:contains("Non"),
+    .pf-c-login button:contains("Yes"),
+    .pf-c-login button:contains("No"),
+    body:has(.pf-c-login) button:contains("Oui"),
+    body:has(.pf-c-login) button:contains("Non"),
+    body:has(.pf-c-login) button:contains("Yes"),
+    body:has(.pf-c-login) button:contains("No") {
+        width: 100% !important;
+        min-width: auto !important;
+        padding: 14px 28px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .pf-c-login button:contains("Oui"),
+    .pf-c-login button:contains("Non"),
+    .pf-c-login button:contains("Yes"),
+    .pf-c-login button:contains("No"),
+    body:has(.pf-c-login) button:contains("Oui"),
+    body:has(.pf-c-login) button:contains("Non"),
+    body:has(.pf-c-login) button:contains("Yes"),
+    body:has(.pf-c-login) button:contains("No") {
+        padding: 12px 24px !important;
+        font-size: 14px !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== CUSTOMISATION CHECKBOX "SE SOUVENIR DE MOI" ===== */
+
+/* Container de la checkbox UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-check,
+.pf-c-login .pf-c-switch,
+body:has(.pf-c-login) .pf-c-check,
+body:has(.pf-c-login) .pf-c-switch {
+    margin: 20px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* Style la checkbox native directement */
+.pf-c-login .pf-c-check__input,
+.pf-c-login .pf-c-switch__input,
+.pf-c-login input[type="checkbox"],
+body:has(.pf-c-login) .pf-c-check__input,
+body:has(.pf-c-login) .pf-c-switch__input,
+body:has(.pf-c-login) input[type="checkbox"],
+input[id*="authentik-remember-me"],
+input[name*="remember"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 5px !important;
+    margin-right: 8px !important;
+    position: relative !important;
+    vertical-align: middle !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+}
+
+/* État hover de la checkbox */
+.pf-c-login .pf-c-check__input:hover,
+.pf-c-login .pf-c-switch__input:hover,
+.pf-c-login input[type="checkbox"]:hover,
+body:has(.pf-c-login) .pf-c-check__input:hover,
+body:has(.pf-c-login) .pf-c-switch__input:hover,
+body:has(.pf-c-login) input[type="checkbox"]:hover,
+input[id*="authentik-remember-me"]:hover,
+input[name*="remember"]:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* État checked de la checkbox */
+.pf-c-login .pf-c-check__input:checked,
+.pf-c-login .pf-c-switch__input:checked,
+.pf-c-login input[type="checkbox"]:checked,
+body:has(.pf-c-login) .pf-c-check__input:checked,
+body:has(.pf-c-login) .pf-c-switch__input:checked,
+body:has(.pf-c-login) input[type="checkbox"]:checked,
+input[id*="authentik-remember-me"]:checked,
+input[name*="remember"]:checked {
+    background: rgba(102, 126, 234, 0.7) !important;
+    border-color: rgba(102, 126, 234, 0.8) !important;
+    box-shadow: 
+        0 0 0 2px rgba(102, 126, 234, 0.2),
+        0 6px 20px rgba(102, 126, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Ajouter le checkmark avec ::after */
+.pf-c-login .pf-c-check__input:checked::after,
+.pf-c-login .pf-c-switch__input:checked::after,
+.pf-c-login input[type="checkbox"]:checked::after,
+body:has(.pf-c-login) .pf-c-check__input:checked::after,
+body:has(.pf-c-login) .pf-c-switch__input:checked::after,
+body:has(.pf-c-login) input[type="checkbox"]:checked::after,
+input[id*="authentik-remember-me"]:checked::after,
+input[name*="remember"]:checked::after {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    animation: checkboxChecked 0.3s ease !important;
+}
+
+/* Styling du label de la checkbox */
+.pf-c-login .pf-c-check__label,
+.pf-c-login .pf-c-switch__label,
+.pf-c-login label[for*="checkbox"],
+.pf-c-login label[for*="remember"],
+body:has(.pf-c-login) .pf-c-check__label,
+body:has(.pf-c-login) .pf-c-switch__label,
+body:has(.pf-c-login) label[for*="checkbox"],
+body:has(.pf-c-login) label[for*="remember"],
+label[for*="authentik-remember-me"],
+.pf-c-form__group .pf-c-check__label,
+.pf-c-form__group .pf-c-switch__label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: color 0.3s ease !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.pf-c-login .pf-c-check__label:hover,
+.pf-c-login .pf-c-switch__label:hover,
+body:has(.pf-c-login) .pf-c-check__label:hover,
+body:has(.pf-c-login) .pf-c-switch__label:hover,
+label[for*="authentik-remember-me"]:hover,
+.pf-c-form__group .pf-c-check__label:hover,
+.pf-c-form__group .pf-c-switch__label:hover {
+    color: white !important;
+}
+
+/* Fix pour les sélecteurs spécifiques Authentik */
+.pf-c-form__group-control .pf-c-check,
+.pf-c-form__group-control .pf-c-switch {
+    margin: 20px 0 !important;
+}
+
+/* Cibler directement les éléments par leur structure HTML */
+ak-form-element-horizontal[name="remember"] .pf-c-check,
+ak-form-element-horizontal[name="remember"] .pf-c-switch,
+div[slot="form"] .pf-c-check,
+div[slot="form"] .pf-c-switch {
+    margin: 20px 0 !important;
+}
+
+/* Animation pour l'état checked */
+@keyframes checkboxChecked {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Cibler spécifiquement le texte "Propulsé par" */
+span:contains("Propulsé par"),
+span:contains("Powered by"),
+*[data-ouia-component-type="PF4/Footer"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Masquer les liens de brand en bas */
+ul.pf-c-list.pf-m-inline,
+.pf-c-list.pf-m-inline {
+    display: none !important;
+}
+
+/* Compenser la hauteur perdue du footer */
+.pf-c-login .pf-c-login__container {
+    padding-bottom: 70px !important;
+}
+
+/* Ou ajouter de l'espace au main body */
+.pf-c-login .pf-c-login__main {
+    padding-bottom: 50px !important;
+}
+
+/* ===== CHANGEMENT DU TEXTE PAS VOUS ===== */
+/* Améliorer la lisibilité du lien "pas vous" */
+.pf-c-login a[href*="/cancel/"],
+.pf-c-login a[href*="cancel"],
+div[slot="link"] a,
+.pf-c-login .pf-c-login__main a {
+    color: white !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s ease !important;
+}
+
+.pf-c-login a[href*="/cancel/"]:hover,
+.pf-c-login a[href*="cancel"]:hover,
+div[slot="link"] a:hover,
+.pf-c-login .pf-c-login__main a:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Cibler spécifiquement le texte "pas vous" si besoin */
+a:contains("pas vous"),
+a:contains("not you") {
+    color: white !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== DESIGN MODERNE UNIQUEMENT POUR LA PAGE DE LOGIN ===== */
+
+/* Cibler UNIQUEMENT les pages avec classe pf-c-login (page de connexion) */
+.pf-c-login .pf-c-page,
+body:has(.pf-c-login) .pf-c-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-attachment: fixed !important;
+}
+
+/* Alternative avec un arrière-plan plus naturel UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-background-image,
+body:has(.pf-c-login) .pf-c-background-image {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="80" cy="80" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="40" cy="60" r="0.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') !important;
+    background-size: cover, 200px 200px !important;
+}
+
+/* Container principal avec noise simple mais efficace */
+.pf-c-login {
+    background: none !important;
+}
+
+.pf-c-login .pf-c-login__container {
+    background: 
+        rgba(255, 255, 255, 0.03),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E") !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    padding: 60px 50px 50px 50px !important;
+    max-width: 450px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 10px !important;
+}
+
+/* Effet noise CSS pur pour donner de la texture réaliste */
+.pf-c-login .pf-c-login__container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 11% 15%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 23% 35%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at 45% 25%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 67% 45%, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        radial-gradient(circle at 89% 65%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at 12% 75%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at 34% 85%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 56% 95%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 78% 15%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at 90% 35%, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        radial-gradient(circle at 25% 55%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 47% 75%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 
+        8px 8px, 12px 12px, 10px 10px, 14px 14px, 
+        9px 9px, 11px 11px, 13px 13px, 15px 15px,
+        7px 7px, 16px 16px, 6px 6px, 18px 18px;
+    border-radius: 24px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Ajouter un deuxième layer de noise plus fin */
+.pf-c-login .pf-c-login__container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 33% 22%, rgba(255, 255, 255, 0.03) 0.5px, transparent 0.5px),
+        radial-gradient(circle at 66% 44%, rgba(255, 255, 255, 0.04) 0.5px, transparent 0.5px),
+        radial-gradient(circle at 88% 66%, rgba(255, 255, 255, 0.02) 0.5px, transparent 0.5px),
+        radial-gradient(circle at 11% 88%, rgba(255, 255, 255, 0.05) 0.5px, transparent 0.5px),
+        radial-gradient(circle at 55% 11%, rgba(255, 255, 255, 0.03) 0.5px, transparent 0.5px),
+        radial-gradient(circle at 77% 33%, rgba(255, 255, 255, 0.04) 0.5px, transparent 0.5px);
+    background-size: 4px 4px, 5px 5px, 3px 3px, 6px 6px, 4px 4px, 7px 7px;
+    border-radius: 24px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Cibler spécifiquement les éléments de la page de connexion */
+.pf-c-login .pf-c-login__main {
+    background: transparent !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    padding: 40px !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Cibler spécifiquement les cards de la page de connexion */
+.pf-c-login .pf-c-card {
+    background: transparent !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.pf-c-login .pf-c-login__container:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Header avec logo UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-login__header {
+    margin-bottom: 30px !important;
+}
+
+.pf-c-login .pf-c-brand {
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4)) !important;
+}
+
+/* Titre de bienvenue UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-title {
+    color: white !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 25px !important;
+}
+
+/* Avatar utilisateur UNIQUEMENT sur page de login */
+.pf-c-login .ak-avatar {
+    border: 3px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Champs de saisie UNIQUEMENT sur page de login - Sélecteurs multiples pour forcer */
+.pf-c-login .pf-c-form-control,
+.pf-c-login input[type="text"],
+.pf-c-login input[type="email"],
+.pf-c-login input[type="password"],
+.pf-c-login input.pf-c-form-control,
+body:has(.pf-c-login) .pf-c-form-control,
+body:has(.pf-c-login) input[type="text"],
+body:has(.pf-c-login) input[type="email"],
+body:has(.pf-c-login) input[type="password"] {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    padding: 18px 22px !important;
+    font-size: 16px !important;
+    color: white !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    min-height: 30px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.pf-c-login .pf-c-form-control:focus,
+.pf-c-login input[type="text"]:focus,
+.pf-c-login input[type="email"]:focus,
+.pf-c-login input[type="password"]:focus,
+.pf-c-login input.pf-c-form-control:focus,
+body:has(.pf-c-login) .pf-c-form-control:focus,
+body:has(.pf-c-login) input[type="text"]:focus,
+body:has(.pf-c-login) input[type="email"]:focus,
+body:has(.pf-c-login) input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(102, 126, 234, 0.5) !important;
+    border-width: 1.5px !important;
+    box-shadow: 
+        0 0 0 2px rgba(102, 126, 234, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Améliorer la sélection de texte */
+.pf-c-login .pf-c-form-control::selection,
+.pf-c-login input[type="text"]::selection,
+.pf-c-login input[type="email"]::selection,
+.pf-c-login input[type="password"]::selection,
+body:has(.pf-c-login) input::selection {
+    background: rgba(102, 126, 234, 0.4) !important;
+    color: white !important;
+}
+
+/* Cibler spécifiquement par attribut si nécessaire */
+input[name="uidField"],
+input[name="password"],
+input[placeholder*="Courriel"],
+input[placeholder*="utilisateur"] {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    padding: 18px 22px !important;
+    font-size: 16px !important;
+    color: white !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    min-height: 35px !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.pf-c-login .pf-c-form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 400 !important;
+}
+
+/* Cibler aussi les placeholders par sélecteurs spécifiques */
+.pf-c-login input[type="text"]::placeholder,
+.pf-c-login input[type="email"]::placeholder,
+.pf-c-login input[type="password"]::placeholder,
+body:has(.pf-c-login) input::placeholder,
+input[name="uidField"]::placeholder,
+input[name="password"]::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 400 !important;
+}
+
+/* Labels UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-form__label {
+    color: white !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 12px !important;
+}
+
+/* Boutons UNIQUEMENT sur page de login - Style subtil et naturel */
+.pf-c-login .pf-c-button,
+.pf-c-login button,
+.pf-c-login input[type="submit"],
+body:has(.pf-c-login) .pf-c-button,
+body:has(.pf-c-login) button,
+button.pf-c-button.pf-m-primary.pf-m-block {
+    border-radius: 14px !important;
+    padding: 16px 32px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    text-transform: none !important;
+    border: none !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Bouton principal UNIQUEMENT sur page de login - Plus visible */
+.pf-c-login .pf-c-button.pf-m-primary,
+.pf-c-login button.pf-m-primary,
+.pf-c-login input[type="submit"],
+body:has(.pf-c-login) .pf-c-button.pf-m-primary,
+body:has(.pf-c-login) button.pf-m-primary,
+button.pf-c-button.pf-m-primary.pf-m-block,
+button[type="submit"] {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 14px !important;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    z-index: 3 !important;
+    font-weight: 700 !important;
+}
+
+/* Effet de reflet sur le bouton principal - Plus visible */
+.pf-c-login .pf-c-button.pf-m-primary::before,
+.pf-c-login button.pf-m-primary::before,
+body:has(.pf-c-login) .pf-c-button.pf-m-primary::before,
+button.pf-c-button.pf-m-primary.pf-m-block::before,
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+.pf-c-login .pf-c-button.pf-m-primary:hover::before,
+.pf-c-login button.pf-m-primary:hover::before,
+body:has(.pf-c-login) .pf-c-button.pf-m-primary:hover::before,
+button.pf-c-button.pf-m-primary.pf-m-block:hover::before,
+button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+.pf-c-login .pf-c-button.pf-m-primary:hover,
+.pf-c-login button.pf-m-primary:hover,
+body:has(.pf-c-login) .pf-c-button.pf-m-primary:hover,
+button.pf-c-button.pf-m-primary.pf-m-block:hover,
+button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* S'assurer que le texte du bouton est au-dessus */
+.pf-c-login .pf-c-button.pf-m-primary *,
+.pf-c-login button.pf-m-primary *,
+body:has(.pf-c-login) .pf-c-button.pf-m-primary *,
+button.pf-c-button.pf-m-primary.pf-m-block *,
+button[type="submit"] * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Boutons secondaires UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-button.pf-m-secondary,
+.pf-c-login .pf-c-button.pf-m-link,
+body:has(.pf-c-login) .pf-c-button.pf-m-secondary,
+body:has(.pf-c-login) .pf-c-button.pf-m-link {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 
+        0 4px 30px rgba(31, 38, 135, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.pf-c-login .pf-c-button.pf-m-secondary:hover,
+.pf-c-login .pf-c-button.pf-m-link:hover,
+body:has(.pf-c-login) .pf-c-button.pf-m-secondary:hover,
+body:has(.pf-c-login) .pf-c-button.pf-m-link:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 
+        0 8px 32px rgba(31, 38, 135, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Liens UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-login__main a {
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.pf-c-login .pf-c-login__main a:hover {
+    color: #667eea !important;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.5) !important;
+}
+
+/* Messages d'erreur UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-alert.pf-m-danger {
+    background: rgba(220, 53, 69, 0.85) !important;
+    border: 1px solid rgba(220, 53, 69, 0.3) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(15px) !important;
+    color: white !important;
+    box-shadow: 
+        0 8px 25px rgba(220, 53, 69, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Messages de succès UNIQUEMENT sur page de login */
+.pf-c-login .pf-c-alert.pf-m-success {
+    background: rgba(40, 167, 69, 0.85) !important;
+    border: 1px solid rgba(40, 167, 69, 0.3) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(15px) !important;
+    color: white !important;
+    box-shadow: 
+        0 8px 25px rgba(40, 167, 69, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Animations d'entrée et effets */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes borderGlow {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes floatingElements {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+    66% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+.pf-c-login .pf-c-login__container {
+    animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Effet de particules flottantes UNIQUEMENT sur page de login - Plus subtil */
+.pf-c-login .pf-c-login__container::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(102, 126, 234, 0.06) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 200px 200px;
+    animation: floatingElements 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: 32px;
+}
+
+/* Responsive UNIQUEMENT sur page de login */
+@media (max-width: 768px) {
+    .pf-c-login .pf-c-login__container {
+        margin: 20px !important;
+        padding: 40px 30px !important;
+        border-radius: 28px !important;
+        max-width: 90vw !important;
+    }
+    
+    .pf-c-login .pf-c-form-control {
+        padding: 16px 20px !important;
+        border-radius: 14px !important;
+        min-height: 48px !important;
+    }
+    
+    .pf-c-login .pf-c-button {
+        padding: 14px 28px !important;
+        border-radius: 14px !important;
+    }
+}
+
+/* Amélioration pour les petits écrans UNIQUEMENT sur page de login */
+@media (max-width: 480px) {
+    .pf-c-login .pf-c-login__container {
+        padding: 35px 25px !important;
+        border-radius: 24px !important;
+    }
+}
