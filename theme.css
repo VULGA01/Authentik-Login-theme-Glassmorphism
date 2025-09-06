@@ -1176,7 +1176,7 @@ a, body, h1, h2, h3 {
 
 /* Définition d’un background global pour les pages */
 .pf-c-page {
-  --ak-flow-background: url(https://i.imgur.com/zFIBpjs.jpeg) !important;
+  --ak-flow-background: url(https://i.ibb.co/BF6QYPG/Background-2-0-1.jpg) !important;
   background-image: var(--ak-flow-background) !important;
   background-size: cover !important;
   background-position: center !important;
