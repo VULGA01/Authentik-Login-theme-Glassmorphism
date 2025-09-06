@@ -23,7 +23,7 @@ A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/),
 
 Designed and maintained by **VULGA**  
 Feel free to use, modify, or extend the theme.
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 
 ## 🚀 Installation
 
@@ -42,6 +42,7 @@ If you're using **Cloudflare** with a **proxied domain**, you might experience i
 
 This project is open source and freely available under the **MIT License**.  
 You can **use, share, and modify** it without restriction.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
 
