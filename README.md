@@ -2,7 +2,7 @@
 
 A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/), designed by **VULGA**.
 
-> ✅ Tested and fully compatible with **Authentik version 2025.6.4**
+> ✅ Tested and fully compatible with **Authentik version 2025.8.1**
 
 ## ✨ Features
 
