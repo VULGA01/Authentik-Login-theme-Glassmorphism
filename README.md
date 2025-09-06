@@ -11,8 +11,11 @@ A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/),
 - Compatible with latest Authentik versions  
 - Easy to customize
 
-## 📸 Preview
-<img width="1666" height="912" alt="image" src="https://github.com/user-attachments/assets/2ddba972-9274-4f8d-9950-86518a95286d" />
+## 📸 Login Preview
+<img width="2079" height="1028" alt="image" src="https://github.com/user-attachments/assets/12ed548e-01fc-4285-af1f-9344720f7296" />
+
+## 📸 App Dashboard Preview
+<img width="2133" height="1093" alt="image" src="https://github.com/user-attachments/assets/dc9ac725-f734-463d-9921-235ef75a147d" />
 
 > _Insert a screenshot or GIF here once your repo is live._
 
