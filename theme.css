@@ -971,3 +971,538 @@ body:has(.pf-c-login) .pf-c-button.pf-m-link:hover {
         border-radius: 24px !important;
     }
 }
+
+
+
+
+
+/* ====== BEAUTIFUL GLOBAL SCROLLBAR ====== */
+
+/* Variables (faciles à tweaker) */
+:root{
+  --sb-size: 10px;
+  --sb-radius: 12px;
+  --sb-track: rgba(255,255,255,0.06);
+  --sb-thumb: rgba(255,255,255,0.28);
+  --sb-thumb-hover: rgba(255,255,255,0.42);
+  --sb-thumb-active: rgba(255,255,255,0.55);
+}
+
+/* Firefox */
+*{
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar{
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+*::-webkit-scrollbar-track{
+  background: var(--sb-track);
+  border-radius: var(--sb-radius);
+  margin: 4px; /* petit air en haut/bas & gauche/droite */
+}
+*::-webkit-scrollbar-thumb{
+  background-color: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 2px solid transparent;     /* effet “pill” sans coller au bord */
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12),
+              inset 0 8px 14px rgba(0,0,0,0.35);
+}
+*::-webkit-scrollbar-thumb:hover{
+  background-color: var(--sb-thumb-hover);
+}
+*::-webkit-scrollbar-thumb:active{
+  background-color: var(--sb-thumb-active);
+}
+*::-webkit-scrollbar-corner{
+  background: transparent;
+}
+
+/* Un peu plus fin sur mobile */
+@media (max-width: 768px){
+  :root{ --sb-size: 8px; }
+}
+
+/* Option : teinter au thème (dé-commente si tu veux la couleur d’accent)
+:root{
+  --sb-thumb: color-mix(in srgb, var(--ak-accent) 60%, white 20%);
+  --sb-thumb-hover: color-mix(in srgb, var(--ak-accent) 75%, white 10%);
+  --sb-thumb-active: color-mix(in srgb, var(--ak-accent) 85%, white 0%);
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================================================= */
+/* ================== STYLE PAGE APPS & DASHBOARD ================== */
+/* ================================================================= */
+
+
+
+/* Cartes des applications */
+.pf-c-card.pf-m-compact,
+.pf-c-expandable-section.pf-m-display-lg {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Glow subtil au hover */
+.pf-c-card.pf-m-compact:hover,
+.pf-c-expandable-section.pf-m-display-lg:hover {
+    transform: translateY(-3px) scale(1.01) !important;
+    box-shadow: 
+        0 8px 32px rgba(102, 126, 234, 0.25),
+        0 4px 12px rgba(118, 75, 162, 0.2) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+}
+
+/* Icônes des applications */
+.icon.pf-c-avatar {
+    transition: transform 0.3s ease !important;
+}
+.icon.pf-c-avatar:hover {
+    transform: scale(1.08) rotate(1deg) !important;
+}
+
+/* Sidebar (menu gauche) */
+.pf-c-page__sidebar {
+    background: rgba(15, 15, 30, 0.4) !important;
+    backdrop-filter: blur(20px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Header (barre du haut) */
+.pf-c-page__header,
+.pf-c-page__header-tools {
+    background: rgba(20, 20, 40, 0.4) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Boutons dans la page apps */
+.pf-c-button.pf-m-link,
+.pf-c-button.pf-m-secondary,
+.pf-c-button.pf-m-block {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 14px !important;
+    color: white !important;
+    font-weight: 500 !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+.pf-c-button.pf-m-link:hover,
+.pf-c-button.pf-m-secondary:hover,
+.pf-c-button.pf-m-block:hover {
+    background: rgba(102, 126, 234, 0.25) !important;
+    border-color: rgba(102, 126, 234, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Titres des apps */
+.pf-c-title,
+.pf-c-card .pf-c-title {
+    color: white !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+}
+
+/* Texte générique */
+.pf-c-expandable-section__toggle,
+.pf-c-page__header-tools,
+a, body, h1, h2, h3 {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Responsive cards */
+@media (max-width: 768px) {
+    .pf-c-card.pf-m-compact {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+
+
+
+/* ===== ARRIÈRE-PLAN PAGE DES APPLICATIONS ===== */
+
+
+
+/* Définition d’un background global pour les pages */
+.pf-c-page {
+  --ak-flow-background: url(https://i.imgur.com/zFIBpjs.jpeg) !important;
+  background-image: var(--ak-flow-background) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important; /* Fixe l'image au scroll */
+}
+
+/* Sidebar transparente avec blur */
+.pf-c-page__sidebar {
+  background: rgba(25, 25, 25, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ===== STYLE DES CARTES D’APPLICATIONS ===== */
+.pf-c-card.pf-m-compact,
+.pf-c-expandable-section.pf-m-display-lg {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Glow moderne au hover */
+.pf-c-card.pf-m-compact:hover,
+.pf-c-expandable-section.pf-m-display-lg:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.35) !important;
+  border-color: rgba(102, 126, 234, 0.6) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Arrondir la plaque grise derrière les outils du header */
+.pf-c-page__header-tools-group {
+  border-radius: 14px !important;
+  overflow: hidden !important;            /* évite que le fond/blur déborde en carré */
+}
+
+/* si le fond est dessiné via un pseudo-élément */
+.pf-c-page__header-tools-group::before,
+.pf-c-page__header-tools-group::after {
+  border-radius: inherit !important;
+}
+
+/* fallback: suivant les versions, le fond peut être porté par le wrapper */
+.pf-c-page__header-tools {
+  border-radius: 14px !important;
+}
+.pf-c-page__header-tools::before,
+.pf-c-page__header-tools::after {
+  border-radius: inherit !important;
+}
+
+
+/* Box des outils : plus compacte */
+.pf-c-page__header-tools-group {
+  padding: 8px 12px !important;   /* top/bottom 8px, left/right 12px */
+  border-radius: 12px !important;
+}
+
+/* Espace entre les boutons (au cas où) */
+.pf-c-page__header-tools {
+  gap: 8px !important;
+}
+
+
+/* Taille et espacement plus compacts */
+.pf-c-page__header-tools {
+  gap: 8px !important;                 /* espace constant entre tous les items */
+}
+
+/* Boutons (notif, réglages, etc.) alignés sur 36px */
+.pf-c-page__header-tools .pf-c-button {
+  height: 36px !important;
+  min-width: 36px !important;
+}
+.pf-c-page__header-tools .pf-c-button.pf-m-secondary {
+  height: 36px !important;
+  padding: 0 12px !important;          /* pilule admin un peu plus fine */
+}
+
+/* Avatar : un peu plus petit et moins décalé à droite */
+.pf-c-page__header-tools .pf-c-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+
+  display: inline-block !important;
+  object-fit: cover !important;
+  vertical-align: middle !important;
+  align-self: center !important;
+
+  margin-left: 4px !important;         /* rapproché du bouton admin */
+  margin-right: 0 !important;
+  position: relative; top: 0;          /* au cas où on avait mis -1px avant */
+}
+
+/* Option mobile : encore un chouïa plus compact */
+@media (max-width: 768px) {
+  .pf-c-page__header-tools { gap: 6px !important; }
+  .pf-c-page__header-tools .pf-c-button { height: 34px !important; min-width: 34px !important; }
+  .pf-c-page__header-tools .pf-c-button.pf-m-secondary { height: 34px !important; padding: 0 10px !important; }
+  .pf-c-page__header-tools .pf-c-avatar { width: 34px !important; height: 34px !important; margin-left: 3px !important; }
+}
+
+
+/* garantit un espace avec le bord droit même si le padding est reset */
+.pf-c-page__header-tools-group > .pf-c-page__header-tools-item:last-child,
+.pf-c-page__header-tools-group .pf-c-avatar {
+  margin-right: 12px !important;    /* ajuste 10–14px */
+}
+
+
+
+
+
+
+/* espace interne côté droit pour ne pas coller le bord du header */
+.pf-c-page__header-tools {
+  gap: 12px !important;          /* espace entre groupe, bouton admin, avatar */
+  padding-right: 10px !important;/* petit air avec le bord droit */
+}
+
+/* espace dédié avant l’avatar (au cas où gap serait écrasé) */
+.pf-c-page__header-tools > .pf-c-page__header-tools-item.pf-c-avatar,
+.pf-c-page__header-tools img.pf-c-avatar {
+  margin-left: 12px !important;  /* augmente si tu veux plus d’air */
+}
+
+/* sécurité : empêcher une règle globale de remettre 0 */
+[class*="pf-c-"].pf-c-page__header-tools-item.pf-c-avatar {
+  margin-left: 2px !important;
+}
+
+
+
+
+/* Enlève l’anneau/contour overlay du bouton Admin */
+.pf-c-page__header .pf-c-button.pf-m-secondary,
+.pf-c-page__header .pf-c-button.pf-m-secondary:hover,
+.pf-c-page__header .pf-c-button.pf-m-secondary:focus,
+.pf-c-page__header .pf-c-button.pf-m-secondary:active {
+  /* coupe la bordure générée par ::after (toutes les variantes) */
+  --pf-c-button--after--BorderWidth: 0 !important;
+  --pf-c-button--m-secondary--after--BorderColor: transparent !important;
+  --pf-c-button--m-secondary--hover--after--BorderColor: transparent !important;
+  --pf-c-button--m-secondary--focus--after--BorderColor: transparent !important;
+  --pf-c-button--m-secondary--active--after--BorderColor: transparent !important;
+
+  /* pas d’ombre de focus */
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ceinture+bretelles : supprime carrément le pseudo-élément */
+.pf-c-page__header .pf-c-button.pf-m-secondary::after {
+  content: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Boutons icônes (notif / paramètres / logout) : reset complet --- */
+.pf-c-page__header .pf-c-button.pf-m-plain,
+.pf-c-page__header .pf-c-button.pf-m-plain:hover,
+.pf-c-page__header .pf-c-button.pf-m-plain:focus,
+.pf-c-page__header .pf-c-button.pf-m-plain:active {
+  background: transparent !important;
+  color: var(--ak-dark-foreground) !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  outline: none !important;
+
+  /* zone cliquable fixe & centrée */
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  display: inline-grid !important;
+  place-items: center !important;
+}
+
+/* coupe l’anneau PF */
+.pf-c-page__header .pf-c-button.pf-m-plain::after { content: none !important; }
+
+/* --- Anim : on scale UNIQUEMENT l’icône, pas le bouton --- */
+.pf-c-page__header .pf-c-button.pf-m-plain > i,
+.pf-c-page__header .pf-c-button.pf-m-plain > svg,
+.pf-c-page__header .pf-c-button.pf-m-plain > img {
+  pointer-events: none;                 /* évite le jitter avec tooltip */
+  display: inline-block;
+  transform: translateZ(0) scale(1);
+  transition: transform .16s ease !important;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.pf-c-page__header .pf-c-button.pf-m-plain:hover > i,
+.pf-c-page__header .pf-c-button.pf-m-plain:hover > svg,
+.pf-c-page__header .pf-c-button.pf-m-plain:hover > img {
+  transform: scale(1.14);
+}
+
+.pf-c-page__header .pf-c-button.pf-m-plain:active > i,
+.pf-c-page__header .pf-c-button.pf-m-plain:active > svg,
+.pf-c-page__header .pf-c-button.pf-m-plain:active > img {
+  transform: scale(0.92);
+}
+
+/* Option mobile */
+@media (max-width: 768px) {
+  .pf-c-page__header .pf-c-button.pf-m-plain {
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
+
+
+
+
+
+/* =========================
+   1) SCOPE : UNIQUEMENT portail utilisateur
+   ========================= */
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools-group,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-secondary,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-plain,
+[data-ak-interface-root="ak-interface-user"] .pf-c-avatar,
+[data-ak-interface-root="ak-interface-user"] .pf-c-select__toggle,
+[data-ak-interface-root="ak-interface-user"] .pf-c-select__toggle .pf-c-select__toggle-wrapper,
+[data-ak-interface-root="ak-interface-user"] .pf-c-select__toggle-text,
+[data-ak-interface-root="ak-interface-user"] .pf-c-dropdown__toggle-text,
+[data-ak-interface-root="ak-interface-user"] .pf-c-select__toggle-icon,
+[data-ak-interface-root="ak-interface-user"] .pf-c-dropdown__toggle-icon {
+  /* ce bloc ne fait que limiter la portée des styles déjà posés */
+}
+
+/* Effet hover "agrandir l’icône" — limité au header du portail user */
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-plain i,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-plain .pf-c-icon {
+  display: inline-block;
+  transition: transform .165s ease;
+  transform-origin: center center;
+  will-change: transform;
+}
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-plain:hover i,
+[data-ak-interface-root="ak-interface-user"] .pf-c-page__header-tools .pf-c-button.pf-m-plain:hover .pf-c-icon {
+  transform: scale(1.18);
+}
+
+/* =========================
+   2) HOTFIX ADMIN : on annule nos overrides
+   ========================= */
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-plain,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-secondary {
+  /* retire toute contrainte de taille/transform qui écrasait les boutons */
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: var(--pf-c-button--PaddingTop) var(--pf-c-button--PaddingRight)
+           var(--pf-c-button--PaddingBottom) var(--pf-c-button--PaddingLeft) !important;
+  transform: none !important;
+  background: var(--pf-c-button--m-plain--BackgroundColor, transparent) !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--pf-c-button--m-plain--Color, inherit) !important;
+}
+
+/* Sélecteurs/inputs de l’admin → laissez PatternFly gérer la taille */
+[data-ak-interface-root="ak-interface-admin"] .pf-c-select__toggle,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-form-control {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: initial !important;
+}
+
+/* Si tu avais stylé les modales globalement, neutralise côté admin */
+[data-ak-interface-root="ak-interface-admin"] .pf-c-modal-box {
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* Au cas où : enlève tout hover custom générique de nos icônes en admin */
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-plain i,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-plain .pf-c-icon {
+  transform: none !important;
+  transition: none !important;
+}
