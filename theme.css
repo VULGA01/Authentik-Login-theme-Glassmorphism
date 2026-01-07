@@ -10,6 +10,7 @@
 /* Change the background image URL below */
 :root {
     --ak-flow-background: url(https://i.imgur.com/zMTDTxy.jpeg);
+    --ak-social-separator-text: "Continuer avec";
     --ak-accent: #d0ced0;
 }
 
@@ -1793,6 +1794,42 @@ ak-app-icon::part(icon image) {
 
 
 
+
+.pf-c-login__main-footer-links {
+    margin-top: 0 !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    /* Ensure separator is full width on top */
+    flex-wrap: wrap !important;
+}
+
+/* Custom CSS-only Separator "Ou" */
+.pf-c-login__main-footer-links::before {
+    content: var(--ak-social-separator-text) !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    margin-bottom: 20px !important;
+    margin-top: 10px !important;
+    font-weight: 400 !important;
+
+    /* The Line Trick: Solid White & Balanced Gap for "Continuer avec" */
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 1) 32%,
+            transparent 32%,
+            transparent 68%,
+            rgba(255, 255, 255, 1) 68%,
+            rgba(255, 255, 255, 1) 100%) !important;
+    background-size: 100% 1px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
 .pf-c-login__main-footer-links-item-link {
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -1805,6 +1842,45 @@ ak-app-icon::part(icon image) {
     justify-content: center !important;
     text-decoration: none !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Resize the icon (FontAwesome or SVG) */
+.pf-c-login__main-footer-links-item-link i,
+.pf-c-login__main-footer-links-item-link svg {
+    /* Revert to slightly larger icon since text is gone */
+    font-size: 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* If no match found, fallback to aria-label or just blank */
+content: attr(aria-label);
+font-size: 14px !important;
+font-weight: 500 !important;
+color: rgba(255, 255, 255, 0.9) !important;
+white-space: nowrap !important;
+display: block !important;
+text-transform: capitalize !important;
+}
+
+/* Ensure nice casing */
+}
+
+/* Resize the icon (FontAwesome or SVG) */
+.pf-c-login__main-footer-links-item-link i,
+.pf-c-login__main-footer-links-item-link svg {
+    font-size: 18px !important;
+    /* Reduce specific icon size */
+    width: 18px !important;
+    height: 18px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .pf-c-login__main-footer-links-item-link:hover {
