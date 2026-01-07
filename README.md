@@ -23,7 +23,6 @@ A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/),
 ## 📸 App Dashboard Preview
 <img width="2486" height="1119" alt="app list" src="https://github.com/user-attachments/assets/99c22aac-a6c7-4305-9510-f78dfd5575df" />
 
-> _Insert a screenshot or GIF here once your repo is live._
 
 ## 🧑‍🎨 Author
 
