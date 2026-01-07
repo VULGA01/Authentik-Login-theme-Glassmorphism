@@ -14,10 +14,14 @@ A custom **glassmorphism** login theme for [Authentik](https://goauthentik.io/),
 - **Easy Customization**: Simple variables to change background and accent colors.
 
 ## 📸 Login Preview
-<img width="2079" height="1028" alt="image" src="https://github.com/user-attachments/assets/12ed548e-01fc-4285-af1f-9344720f7296" />
+<img width="2478" height="1115" alt="login" src="https://github.com/user-attachments/assets/c5237f16-88c7-40d1-a5f7-1afbc7ffb823" />
+
+## 📸 User Settings Preview
+
+<img width="2482" height="1079" alt="user-settings" src="https://github.com/user-attachments/assets/90232855-780c-4004-9b5f-5d43d55808c7" />
 
 ## 📸 App Dashboard Preview
-<img width="2133" height="1093" alt="image" src="https://github.com/user-attachments/assets/dc9ac725-f734-463d-9921-235ef75a147d" />
+<img width="2486" height="1119" alt="app list" src="https://github.com/user-attachments/assets/99c22aac-a6c7-4305-9510-f78dfd5575df" />
 
 > _Insert a screenshot or GIF here once your repo is live._
 
