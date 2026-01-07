@@ -931,7 +931,9 @@ ak-loading-overlay {
 :host(ak-user-stage-prompt) .pf-c-button.pf-m-primary,
 :host(ak-form-element-horizontal) .pf-c-button.pf-m-primary,
 :host(ak-stage-authenticator-static) .pf-c-button.pf-m-primary,
-:host(ak-stage-prompt) .pf-c-button.pf-m-primary {
+:host(ak-stage-prompt) .pf-c-button.pf-m-primary,
+/* FIX: Connect Button in User Settings */
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-primary {
     background: rgba(255, 255, 255, 0.15) !important;
     color: white !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
@@ -1024,7 +1026,8 @@ ak-loading-overlay {
 :host(ak-user-stage-prompt) .pf-c-button.pf-m-primary:hover,
 :host(ak-form-element-horizontal) .pf-c-button.pf-m-primary:hover,
 :host(ak-stage-authenticator-static) .pf-c-button.pf-m-primary:hover,
-:host(ak-stage-prompt) .pf-c-button.pf-m-primary:hover {
+:host(ak-stage-prompt) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-primary:hover {
     background: rgba(255, 255, 255, 0.25) !important;
     border-color: rgba(255, 255, 255, 0.4) !important;
     transform: translateY(-2px) !important;
