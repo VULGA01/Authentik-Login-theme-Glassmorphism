@@ -677,6 +677,13 @@ body:has(.pf-c-login) .pf-c-page::before {
 body:has(.pf-c-login) {
     position: relative !important;
     min-height: 100vh !important;
+    /* SAFEST CENTER ALIGNMENT */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    /* justify-content: center REMOVED: prevents top clipping */
+    overflow-y: auto !important;
+    padding: 20px !important;
 }
 
 /* Login Container with Glass effect */
@@ -691,7 +698,8 @@ body:has(.pf-c-login) {
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    padding: 20px 50px 30px 50px !important;
+    padding: 40px !important;
+    /* Reduced padding */
     /* Desktop default: 450px min-width */
     min-width: 450px !important;
     /* Combined with max-width for responsiveness */
@@ -699,8 +707,26 @@ body:has(.pf-c-login) {
     max-width: 700px !important;
     transition: all 0.3s ease !important;
     position: relative !important;
-    overflow: visible !important;
+
+    /* THE MAGICAL FIX: Safe Centering */
     margin: auto !important;
+
+    /* STRICT SIZING: Prevent stretching */
+    height: auto !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    flex-basis: auto !important;
+
+    max-height: none !important;
+    overflow: visible !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    /* NUCLEAR SAFEGUARD */
+    align-self: center !important;
+    justify-self: center !important;
 }
 
 /* Login Content */
@@ -714,15 +740,31 @@ body:has(.pf-c-login) {
     padding: 45px !important;
     position: relative !important;
     z-index: 10 !important;
+
+    /* NUCLEAR SIZING on the ACTUAL BOX */
+    height: fit-content !important;
+    min-height: 0 !important;
+    flex-grow: 0 !important;
+
+    /* Allow box to grow with content */
     overflow-y: visible !important;
     min-width: auto !important;
-    min-height: auto !important;
-    max-height: 74vh !important;
+    max-height: none !important;
     width: 100% !important;
     /* iOS Fix: width 100% instead of 54vh */
     max-width: 570px !important;
     /* iOS Fix: max-width px instead of vh */
     margin: auto !important;
+    height: fit-content !important;
+    /* Ensure it shrinks to content */
+}
+
+/* Hide empty social links container to prevent spacing issues */
+.pf-c-login__main-footer-links:empty,
+ak-brand-links:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Agrandissement exceptionnel pour le stage TOTP */
@@ -907,6 +949,65 @@ ak-loading-overlay {
     /* Force height */
     padding-top: 12px !important;
     padding-bottom: 12px !important;
+}
+
+/* Secondary Button (Security Key, WebAuthn, etc.) - Glassmorphism */
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-webauthn) .pf-c-button.pf-m-secondary,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    margin-top: 10px !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-webauthn) .pf-c-button.pf-m-secondary:hover,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+    color: white !important;
+}
+
+/* KEY ICON & GLITCH FIX */
+/* Repurpose ::before to be a Key Icon instead of a glitchy bar */
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary::before,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 8px !important;
+    /* Font Awesome Key Icon (White) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='white'%3E%3Cpath d='M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.6 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.2 38.6 352zM336 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    /* Reset any glitchy borders/backgrounds from previous states */
+    border: none !important;
+    background-color: transparent !important;
+    position: static !important;
+    transform: none !important;
 }
 
 :host(ak-stage-identification) .pf-c-button.pf-m-primary:hover,
@@ -1147,6 +1248,59 @@ ak-loading-overlay {
 :host(ak-interface-user) .pf-c-page__main {
     background: transparent !important;
     background-color: transparent !important;
+}
+
+
+/* ========================================= */
+/* === FORM INPUTS & PASSWORD TOGGLE FIX === */
+/* ========================================= */
+
+/* Fix Input Group Position to allow absolute button */
+.pf-c-input-group {
+    position: relative !important;
+    display: flex !important;
+    width: 100% !important;
+}
+
+/* Position the "Show Password" button inside the input */
+.pf-c-button.pf-m-control {
+    position: absolute !important;
+    top: 50% !important;
+    right: 5px !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    /* Very high z-index to stay above focused inputs */
+    z-index: 9999 !important;
+    padding: 5px !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-width: 0 !important;
+    width: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Hover effect */
+.pf-c-button.pf-m-control:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+}
+
+/* Remove borders */
+.pf-c-button.pf-m-control::after,
+.pf-c-button.pf-m-control::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Ensure input has space */
+.pf-c-form-control {
+    padding-right: 40px !important;
 }
 
 /* ===== ADMIN INTERFACE PRESERVATION ===== */
@@ -1475,12 +1629,18 @@ ak-loading-overlay {
 :host(ak-user-session-list) ak-chip,
 :host(ak-user-session-list) ak-chip[theme="dark"],
 :host(ak-user-reputation-list) ak-chip,
-:host(ak-user-reputation-list) ak-chip[theme="dark"] {
+:host(ak-user-reputation-list) ak-chip[theme="dark"],
+/* FIX: Permission Chips */
+:host(ak-user-consent-list) .pf-c-chip,
+.pf-c-chip,
+ak-chip {
     --pf-c-chip--BackgroundColor: #333333 !important;
     --pf-c-chip__text--Color: white !important;
     --pf-c-chip--Color: white !important;
     color: white !important;
 }
+
+
 
 :host(ak-user-consent-list) ak-chip::part(chip),
 :host(ak-user-token-list) ak-chip::part(chip),
@@ -1565,9 +1725,42 @@ ak-app-icon::part(icon image) {
     border-radius: 15px !important;
 }
 
+
+
+.pf-c-label.pf-m-green {
+    --pf-c-label--BackgroundColor: #1c1c1c !important;
+    --pf-c-label__icon--Color: #4d9144;
+    --pf-c-label__content--before--BorderColor: #474747 !important;
+    --pf-c-label__content--Color: var(--pf-c-label--m-green__content--Color);
+    --pf-c-label__content--before--BorderColor: var(--pf-c-label--m-green__content--before--BorderColor);
+    --pf-c-label__content--link--hover--before--BorderColor: var(--pf-c-label--m-green__content--link--hover--before--BorderColor);
+    --pf-c-label__content--link--focus--before--BorderColor: var(--pf-c-label--m-green__content--link--focus--before--BorderColor);
+    --pf-c-label--m-outline__content--Color: var(--pf-c-label--m-outline--m-green__content--Color);
+    --pf-c-label--m-outline__content--before--BorderColor: #3f453f !important;
+    /* --pf-c-label--m-outline__content--link--hover--before--BorderColor: var(--pf-c-label--m-outline--m-green__content--link--hover--before--BorderColor); */
+    --pf-c-label--m-outline__content--link--focus--before--BorderColor: var(--pf-c-label--m-outline--m-green__content--link--focus--before--BorderColor);
+    --pf-c-label--m-editable__content--before--BorderColor: var(--pf-c-label--m-green__content--before--BorderColor);
+    --pf-c-label--m-editable__content--hover--before--BorderColor: var(--pf-c-label--m-green__content--before--BorderColor);
+    --pf-c-label--m-editable__content--focus--before--BorderColor: var(--pf-c-label--m-green__content--before--BorderColor);
+}
+
+.pf-c-label.pf-m-gray {
+    --pf-c-label--BackgroundColor: #1a1a1a !important;
+    --pf-c-label__icon--Color: #d91e1e !important;
+    --pf-c-label__content--Color: var(--pf-c-label--m-gray__content--Color);
+    --pf-c-label__content--before--BorderColor: var(--pf-c-label--m-gray__content--before--BorderColor);
+    --pf-c-label__content--link--hover--before--BorderColor: var(--pf-c-label--m-gray__content--link--hover--before--BorderColor);
+    --pf-c-label__content--link--focus--before--BorderColor: var(--pf-c-label--m-gray__content--link--focus--before--BorderColor);
+}
+
+
 /* ========================================= */
 /* SOCIAL LOGIN BUTTONS (EXTERNAL IDP)       */
 /* ========================================= */
+
+
+
+
 
 .pf-c-login__main-footer-links-item-link {
     background: rgba(255, 255, 255, 0.08) !important;
@@ -1772,24 +1965,31 @@ ak-app-icon::part(icon image) {
         max-width: 100% !important;
         min-width: 100% !important;
         box-sizing: border-box !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
+
+        /* Mobile Centering Fix: Stop forcing full height/fixed pos */
+        height: auto !important;
+        min-height: 0 !important;
+        position: relative !important;
+        margin: auto !important;
+        /* Enable centering */
+
         border-radius: 0 !important;
         border: none !important;
         padding: 20px !important;
-        margin: 0 !important;
-        /* Supprime complètement la box sur mobile */
+
         background: transparent !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         box-shadow: none !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
+
+        /* Reset Fixed positioning props */
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+
         z-index: 1 !important;
-        overflow-y: auto !important;
+        overflow-y: visible !important;
     }
 
     .pf-c-login .pf-c-login__main,
@@ -1810,7 +2010,11 @@ ak-app-icon::part(icon image) {
         box-shadow: none !important;
         position: relative !important;
         z-index: 2 !important;
-        margin-bottom: 0 !important;
+
+        /* FIX: Reset potential PatternFly margins that push it down */
+        margin: auto !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
     }
 
     /* Supprime les espaces du footer */
@@ -1840,18 +2044,31 @@ ak-app-icon::part(icon image) {
         min-height: 50px !important;
     }
 
-    /* Boutons sociaux empilés verticalement */
+    /* Boutons sociaux alignés horizontalement (max 4 par ligne) */
     .pf-c-login__main-footer-links {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 12px !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
     }
 
+
+
+
+
     .pf-c-login__main-footer-links-item button {
-        width: 100% !important;
-        max-width: 300px !important;
+        /* Compact buttons for row of 4 */
+        width: auto !important;
+        min-width: 60px !important;
+        /* Ensure touch target */
+        flex: 1 1 auto !important;
+        /* Grow slightly to fill row */
+        max-width: 80px !important;
+        /* Don't get too big */
+
         font-size: 15px !important;
-        padding: 14px 20px !important;
+        padding: 10px 10px !important;
+        /* Reduced padding */
     }
 
     .pf-c-login__main-footer-links-item button img {
