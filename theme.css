@@ -1,9 +1,9 @@
-/* ===== AUTHENTIK GLASSMORPHISM THEME BY VULGA - V1.1  ===== */
+/* ===== AUTHENTIK GLASSMORPHISM THEME - V1.1 (Badge Fix) ===== */
 
 /* 
    This theme implements a modern glassmorphism look for Authentik.
    It overrides standard PatternFly and Authentik components.
-   Please upload this file in the Authentik Admin Interface -> Branding -> Custom CSS.
+   Please upload this file in the Authentik Admin Interface -> Customization -> Blueprints/Files.
 */
 
 /* ===== EASY CUSTOMIZATION ===== */
@@ -652,10 +652,24 @@ ul.pf-c-list.pf-m-inline,
 /* Page Background */
 .pf-c-login .pf-c-page,
 body:has(.pf-c-login) .pf-c-page {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    background-attachment: fixed !important;
+    /* Fixed background workaround for iOS */
     position: relative !important;
     min-height: 100vh !important;
+    min-height: 100dvh !important;
+    z-index: 0 !important;
+}
+
+.pf-c-login .pf-c-page::before,
+body:has(.pf-c-login) .pf-c-page::before {
+    content: "" !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
 }
 
 /* Login page wrapper */
@@ -678,8 +692,11 @@ body:has(.pf-c-login) {
         0 8px 32px rgba(0, 0, 0, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
     padding: 20px 50px 30px 50px !important;
+    /* Desktop default: 450px min-width */
     min-width: 450px !important;
-    max-width: 600px !important;
+    /* Combined with max-width for responsiveness */
+    width: 100% !important;
+    max-width: 700px !important;
     transition: all 0.3s ease !important;
     position: relative !important;
     overflow: visible !important;
@@ -701,8 +718,10 @@ body:has(.pf-c-login) {
     min-width: auto !important;
     min-height: auto !important;
     max-height: 74vh !important;
-    width: 54vh !important;
-    max-width: 59vh !important;
+    width: 100% !important;
+    /* iOS Fix: width 100% instead of 54vh */
+    max-width: 570px !important;
+    /* iOS Fix: max-width px instead of vh */
     margin: auto !important;
 }
 
@@ -1055,13 +1074,79 @@ ak-loading-overlay {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Global Background */
+/* IOS/Mobile Fix: .pf-c-page needs relative positioning, fixed bg moved to ::before */
+.pf-c-page {
+    /* iOS Fix: moved to pseudo-element to preventing scrolling glitch */
+    /* background-image removed from here, handled via ::before on specific pages or globally if needed */
+    position: relative !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure inner page containers are transparent so the background shows through */
+:host(ak-library-impl) .pf-c-page,
+:host(ak-library-impl) .pf-c-page__main,
+.pf-c-page__main,
+.pf-c-page__main-section,
+.pf-c-page__drawer,
+.pf-c-drawer__content,
+.pf-c-drawer__main,
+:host(ak-library-impl) .pf-l-gallery {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Global Background: ONLY apply outside of Admin Interface */
+/* This prevents the background from leaking into the admin panel */
+/* Global Background: Applied generally, but hidden in specific contexts below */
+/* OPT-IN BACKGROUND STRATEGY */
+/* Only apply the fixed background to User Interface and Login flows */
+/* This automatically excludes the Admin Interface */
+
+/* REF-INSPIRED BACKGROUND STRATEGY */
+/* Apply background directly to the page wrapper, like in theme-ref-icon.css */
 .pf-c-page {
     background-image: var(--ak-flow-background) !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
+}
+
+/* HIJACK ADMIN PANEL: Remove background image in admin interface */
+:host(ak-interface-admin) .pf-c-page {
+    background-image: none !important;
+    background-color: var(--pf-global--BackgroundColor--100) !important;
+}
+
+/* DASHBOARD TRANSPARENCY FIX */
+/* Force variables to transparent inside the library/dashboard host AND user interface wrapper */
+:host(ak-library-impl),
+:host(ak-interface-user) {
+    --pf-global--BackgroundColor--100: transparent !important;
+    --pf-c-page--BackgroundColor: transparent !important;
+    --pf-c-page__main-section--BackgroundColor: transparent !important;
+}
+
+/* DASHBOARD TRANSPARENCY FIX */
+/* Force variables to transparent inside the library/dashboard host AND user interface wrapper */
+:host(ak-library-impl),
+:host(ak-interface-user) {
+    --pf-global--BackgroundColor--100: transparent !important;
+    --pf-c-page--BackgroundColor: transparent !important;
+    --pf-c-page__main-section--BackgroundColor: transparent !important;
+}
+
+/* Force specific containers to be transparent in dashboard */
+:host(ak-library-impl) .pf-c-page,
+:host(ak-library-impl) .pf-c-page__main,
+:host(ak-library-impl) .pf-c-page__main-section,
+:host(ak-library-impl) .pf-c-drawer__content,
+:host(ak-library-impl) .pf-c-drawer__main,
+:host(ak-interface-user) .pf-c-page,
+:host(ak-interface-user) .pf-c-page__main {
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 /* ===== ADMIN INTERFACE PRESERVATION ===== */
@@ -1803,8 +1888,25 @@ ak-app-icon::part(icon image) {
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
-        background-attachment: fixed !important;
-        min-height: 100vh !important;
+        /* iOS Fix: Mobile scroll behavior to avoid jitter/locks */
+        background-attachment: scroll !important;
+        min-height: 100dvh !important;
+        position: relative !important;
+    }
+
+    /* Fix Login Container Padding on Mobile */
+    .pf-c-login .pf-c-login__container {
+        padding: 10px 15px 20px 15px !important;
+        min-width: auto !important;
+        width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .pf-c-login .pf-c-login__main {
+        padding: 25px 20px !important;
+        width: 100% !important;
+        border-radius: 20px !important;
     }
 
     /* Mais garde la transparence sur les conteneurs intermédiaires */
