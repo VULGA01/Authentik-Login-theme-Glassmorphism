@@ -1157,7 +1157,7 @@ ak-loading-overlay {
 
 /* Sidebar */
 .pf-c-page__sidebar {
-    background: rgba(15, 15, 30, 0.4) !important;
+    background: rgba(19, 19, 19, 0.4) !important;
     backdrop-filter: blur(20px) saturate(120%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
     border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -1172,7 +1172,7 @@ ak-loading-overlay {
 }
 
 .pf-c-page>.pf-c-page__header {
-    background: rgba(20, 20, 40, 0.4) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
     backdrop-filter: blur(18px) !important;
     -webkit-backdrop-filter: blur(18px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
