@@ -661,14 +661,18 @@ body:has(.pf-c-login) .pf-c-page {
 }
 
 .pf-c-login .pf-c-page::before,
-body:has(.pf-c-login) .pf-c-page::before {
+body:has(.pf-c-login) .pf-c-page::before,
+body::before {
     content: "" !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-image: var(--ak-flow-background) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     z-index: -1 !important;
     pointer-events: none !important;
 }
@@ -688,7 +692,8 @@ body:has(.pf-c-login) {
 }
 
 /* Login Container with Glass effect */
-.pf-c-login .pf-c-login__container {
+.pf-c-login .pf-c-login__container,
+ak-flow-executor.pf-c-login {
     background:
         rgba(255, 255, 255, 0.03),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E") !important;
@@ -730,11 +735,55 @@ body:has(.pf-c-login) {
     justify-self: center !important;
 }
 
+/* ===== SHADOW DOM LAYOUT FIXES (v2025.12+) ===== */
+
+/* Fix 1: Remove BOTH ::before and ::after spacers that cause vertical gap */
+.pf-c-login::before,
+.pf-c-login::after,
+ak-flow-executor.pf-c-login::before,
+ak-flow-executor.pf-c-login::after,
+body:has(.pf-c-login) .pf-c-login::before,
+body:has(.pf-c-login) .pf-c-login::after {
+    display: none !important;
+    content: none !important;
+    height: 0 !important;
+}
+
+/* Fix 2: Remove double card effect - strip glassmorphism from outer container */
+ak-flow-executor.pf-c-login {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+
+    /* Fix grid layout for perfect centering */
+    display: grid !important;
+    align-content: center !important;
+    justify-items: center !important;
+    grid-template-rows: auto !important;
+    gap: 20px !important;
+}
+
+/* Fix 3: Ensure body centers content without overflow */
+body:has(.pf-c-login) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow-y: auto !important;
+    min-height: 100vh !important;
+}
+
 /* Login Content */
-.pf-c-login .pf-c-login__main {
+.pf-c-login .pf-c-login__main,
+ak-flow-executor::part(main) {
     box-sizing: border-box;
     background: transparent !important;
     backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 66px !important;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset !important;
@@ -758,6 +807,16 @@ body:has(.pf-c-login) {
     margin: auto !important;
     height: fit-content !important;
     /* Ensure it shrinks to content */
+}
+
+/* ===== BRANDING LOGO SIZE ===== */
+/* Authentik's update rendered the logo oversized (333px). Shrink it. */
+.pf-c-login__main-header.pf-c-brand img.branding-logo,
+.pf-c-brand img.branding-logo,
+img.branding-logo {
+    height: 140px !important;
+    width: auto !important;
+    max-height: 140px !important;
 }
 
 /* Hide empty social links container to prevent spacing issues */
@@ -1280,6 +1339,21 @@ ak-loading-overlay {
 :host(ak-interface-user) .pf-c-page__main {
     background: transparent !important;
     background-color: transparent !important;
+}
+
+/* ===== NEW AUTHENTIK BACKGROUND OVERLAY FIX ===== */
+/* The authentik update added a fixed full-viewport "background-wrapper" holding a
+   "background-default-slant" element (an opaque gray slant). On the user/library
+   pages this sat ON TOP of our theme background, hiding it (background looked cut
+   in half / gray on the top area). Make these new parts transparent so the theme
+   background image shows through everywhere, including under the transparent header. */
+[part="background-wrapper"],
+[part="background-default-slant"],
+::part(background-wrapper),
+::part(background-default-slant) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
 }
 
 
