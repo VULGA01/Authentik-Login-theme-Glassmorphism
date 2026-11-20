@@ -2455,3 +2455,17 @@ text-transform: capitalize !important;
         max-height: 40px !important;
     }
 }
+
+/* ===== FIX: DASHBOARD HEADER / LOGOUT VISIBILITY ===== */
+
+/* Keep the dashboard header above the dashboard content */
+.pf-c-page > .pf-c-page__header {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Keep the dashboard content in its own lower layer */
+.pf-c-page > .pf-c-page__main {
+    position: relative !important;
+    z-index: 1 !important;
+}
