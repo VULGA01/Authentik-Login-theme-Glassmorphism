@@ -2497,3 +2497,312 @@ text-transform: capitalize !important;
         max-height: 40px !important;
     }
 }
+/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - BEGIN ===== */
+
+/* ---------- Vue liste : chaque application = une ligne en verre (même style que les cartes) ---------- */
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-group-rows {
+    row-gap: 10px !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    padding: 10px 16px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:last-child {
+    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:hover,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:focus-within {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row[aria-selected="true"] {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row a,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-title"],
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-text"] {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-meta"] {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+/* Séparateurs de groupes : discrets */
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] [part="app-group-separator"] {
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin: 18px 0 !important;
+}
+
+/* ---------- Barre de recherche : pilule en verre ---------- */
+:host(ak-library-impl) input[part="search-input"],
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #ffffff !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    padding: 0 20px !important;
+    font-size: 15px !important;
+    line-height: 44px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    transition: all 0.25s ease !important;
+    outline: none !important;
+}
+:host(ak-library-impl) input[part="search-input"]::placeholder {
+    color: rgba(255, 255, 255, 0.55) !important;
+    font-style: normal !important;
+}
+:host(ak-library-impl) input[part="search-input"]:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+}
+:host(ak-library-impl) input[part="search-input"]:focus {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(102, 126, 234, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.18), 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+/* Retire le soulignement PatternFly du champ */
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control::after,
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control::before {
+    display: none !important;
+}
+:host(ak-library-impl) input[part="search-input"]::-webkit-search-cancel-button {
+    filter: invert(1) !important;
+    opacity: 0.7 !important;
+    cursor: pointer !important;
+}
+
+/* ---------- Bouton grille / liste : rond en verre ---------- */
+:host(ak-library-impl) [part="view-toggle"] {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: all 0.25s ease !important;
+}
+:host(ak-library-impl) [part="view-toggle"]:hover,
+:host(ak-library-impl) [part="view-toggle"]:focus-visible {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+:host(ak-library-impl) [part="view-toggle"]::after,
+:host(ak-library-impl) [part="view-toggle"]::before {
+    border: none !important;
+}
+
+/* ---------- Infobulles (pf-tooltip) ----------
+   Le style interne de pf-tooltip est privé (forme/bordure inaccessibles depuis le thème).
+   On rend l'infobulle d'origine invisible via ses variables, et on dessine la nôtre en ::after
+   sur l'élément pf-tooltip lui-même, avec le texte de son attribut "content" (même libellé). */
+pf-tooltip {
+    --pf-c-tooltip__content--BackgroundColor: transparent !important;
+    --pf-c-tooltip__content--Color: transparent !important;
+    --pf-c-tooltip--BoxShadow: none !important;
+    position: relative !important;
+}
+pf-tooltip[content]::after {
+    content: attr(content);
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -4px);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #ffffff;
+    text-shadow: none;
+    padding: 7px 14px;
+    background: rgba(18, 20, 26, 0.55);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+button:hover pf-tooltip[content]::after,
+button:focus-visible pf-tooltip[content]::after,
+a:hover pf-tooltip[content]::after,
+a:focus-visible pf-tooltip[content]::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+/* ---------- Alignement : en-tête (titre, bouton, recherche) sur les bords des lignes/cartes ----------
+   Les lignes sont décalées par le padding de la section + la marge des groupes (16px), l'en-tête
+   avait son propre padding. On impose une gouttière unique : 40px + 16px = 56px des deux côtés. */
+@media (min-width: 768px) {
+    :host(ak-library-impl) {
+        --library-gutter: 56px;
+    }
+    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__header {
+        padding-inline: var(--library-gutter) !important;
+    }
+    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__main-section {
+        padding-inline: calc(var(--library-gutter) - 16px) !important;
+    }
+    :host(ak-library-impl) [part="app-list"] .ak-c-fieldset {
+        margin-inline: 16px !important;
+    }
+}
+/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - END ===== */
+
+/* ===== USER SWITCHER (authentik 2026.8+) - BEGIN ===== */
+/* Menu "changer d'utilisateur" (ak-user-switcher), même style verre sombre que le sélecteur de langue. */
+
+/* Espace entre le bouton "Interface d'administration" et le compte */
+:host(ak-user-switcher) {
+    margin-inline-start: 12px !important;
+}
+
+/* Bouton (avatar + flèche) */
+:host(ak-user-switcher) .pf-c-dropdown__toggle {
+    color: #ffffff !important;
+    background: transparent !important;
+    border-radius: 50px !important;
+    padding: 4px 10px 4px 4px !important;
+    transition: background 0.3s ease !important;
+}
+:host(ak-user-switcher) .pf-c-dropdown__toggle:hover,
+:host(ak-user-switcher) .pf-c-dropdown__toggle[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+:host(ak-user-switcher) .pf-c-dropdown__toggle::before,
+:host(ak-user-switcher) .pf-c-dropdown__toggle::after {
+    border: none !important;
+}
+:host(ak-user-switcher) [part="toggle-icon"] {
+    color: #ffffff !important;
+    opacity: 0.8 !important;
+}
+:host(ak-user-switcher) [part="avatar-image"] {
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Panneau du menu : verre sombre */
+:host(ak-user-switcher) .pf-c-dropdown__menu {
+    background: rgba(18, 20, 26, 0.55) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    padding: 6px !important;
+    margin-top: 6px !important;
+    min-width: 260px !important;
+}
+
+/* Lignes du menu (utilisateurs, "ajouter", "se déconnecter") */
+:host(ak-user-switcher) .pf-c-dropdown__menu-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease !important;
+}
+:host(ak-user-switcher) .pf-c-dropdown__menu-item:hover:not(:disabled),
+:host(ak-user-switcher) .pf-c-dropdown__menu-item:focus-visible {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+}
+/* Utilisateur actuel (bouton désactivé) : lisible, légèrement surligné */
+:host(ak-user-switcher) .pf-c-dropdown__menu-item:disabled {
+    opacity: 1 !important;
+    cursor: default !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+:host(ak-user-switcher) .pf-c-dropdown__menu-item > i {
+    color: rgba(255, 255, 255, 0.85) !important;
+    width: 16px !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+}
+:host(ak-user-switcher) [part="item"] {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+}
+:host(ak-user-switcher) [part="labels"] {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+}
+:host(ak-user-switcher) [part="name"] {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+:host(ak-user-switcher) [part="description"] {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 13px !important;
+}
+:host(ak-user-switcher) [part="current-indicator"] {
+    color: #ffffff !important;
+}
+
+/* Séparateur */
+:host(ak-user-switcher) .pf-c-divider {
+    --pf-c-divider--BackgroundColor: rgba(255, 255, 255, 0.12) !important;
+    background: transparent !important;
+    margin: 6px 4px !important;
+}
+:host(ak-user-switcher) .pf-c-divider::after {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+/* Flou du panneau : l'en-tête avait son propre backdrop-filter, ce qui en fait la "racine"
+   du flou de tout ce qu'il contient. Le menu ne pouvait donc flouter que l'en-tête, pas la page.
+   Même astuce que pour les cartes des réglages : le flou de l'en-tête passe sur ::before. */
+.pf-c-page>.pf-c-page__header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    position: relative !important;
+}
+.pf-c-page>.pf-c-page__header::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: -1 !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+    pointer-events: none !important;
+}
+/* ===== USER SWITCHER (authentik 2026.8+) - END ===== */
