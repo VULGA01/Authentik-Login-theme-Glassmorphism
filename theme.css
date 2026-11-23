@@ -1374,6 +1374,11 @@ ak-loading-overlay {
     backdrop-filter: blur(18px) !important;
     -webkit-backdrop-filter: blur(18px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    /* The blur makes the header its own stacking context, so the user menu's
+       z-index (200) only counts inside the header and the page content paints
+       over the menu. 300 is PatternFly's normal header value and still sits
+       below modal backdrops (400). */
+    z-index: var(--pf-global--ZIndex--md, 300) !important;
 }
 
 /* IOS/Mobile Fix: .pf-c-page needs relative positioning, fixed bg moved to ::before */
@@ -1694,6 +1699,43 @@ ak-loading-overlay {
     display: none !important;
     content: none !important;
     border: none !important;
+}
+
+/* ===== MODALS INSIDE SETTINGS CARDS ===== */
+/* Authentik draws some modals (New Token, Delete, ...) inside these cards. If
+   the card itself has backdrop-filter, it becomes the containing block for the
+   modal's position:fixed backdrop and the whole modal gets clipped to the card.
+   So the blur lives on ::before, and the card's children are positioned so they
+   paint on top of it. */
+:host(ak-user-settings) .pf-c-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+:host(ak-user-settings) .pf-c-card::before,
+:host(ak-user-settings) .pf-c-card.pf-m-hoverable::before,
+:host(ak-user-settings) .pf-c-card:hover::before {
+    content: "" !important;
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    border: none !important;
+    border-radius: inherit;
+    backdrop-filter: blur(20px) saturate(130%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    pointer-events: none;
+}
+
+:host(ak-user-settings) .pf-c-card > * {
+    position: relative;
+}
+
+/* The dashboard transparency fix above makes --pf-global--BackgroundColor--100
+   transparent, but PatternFly modal boxes and authentik's native dialogs use it
+   for their background. Modals get the solid dark value instead. */
+.pf-c-modal-box,
+.ak-c-dialog {
+    --pf-global--BackgroundColor--100: var(--pf-global--BackgroundColor--dark-100);
 }
 
 /* ===== USER SETTINGS TABLES TRANSPARENCY ===== */
