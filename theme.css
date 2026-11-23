@@ -2497,185 +2497,6 @@ text-transform: capitalize !important;
         max-height: 40px !important;
     }
 }
-/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - BEGIN ===== */
-
-/* ---------- Vue liste : chaque application = une ligne en verre (même style que les cartes) ---------- */
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-group-rows {
-    row-gap: 10px !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 16px !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    padding: 10px 16px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:last-child {
-    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:hover,
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:focus-within {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row[aria-selected="true"] {
-    background: rgba(255, 255, 255, 0.18) !important;
-    border-color: rgba(255, 255, 255, 0.35) !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row a,
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-title"],
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-text"] {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-meta"] {
-    color: rgba(255, 255, 255, 0.65) !important;
-}
-/* Séparateurs de groupes : discrets */
-:host(ak-library-impl) [part="app-list"][data-view-mode="list"] [part="app-group-separator"] {
-    border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    margin: 18px 0 !important;
-}
-
-/* ---------- Barre de recherche : pilule en verre ---------- */
-:host(ak-library-impl) input[part="search-input"],
-:host(ak-library-impl) input[part="search-input"].pf-c-form-control {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    border-radius: 50px !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    color: #ffffff !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    box-sizing: border-box !important;
-    padding: 0 20px !important;
-    font-size: 15px !important;
-    line-height: 44px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    transition: all 0.25s ease !important;
-    outline: none !important;
-}
-:host(ak-library-impl) input[part="search-input"]::placeholder {
-    color: rgba(255, 255, 255, 0.55) !important;
-    font-style: normal !important;
-}
-:host(ak-library-impl) input[part="search-input"]:hover {
-    background: rgba(255, 255, 255, 0.12) !important;
-    border-color: rgba(255, 255, 255, 0.28) !important;
-}
-:host(ak-library-impl) input[part="search-input"]:focus {
-    background: rgba(255, 255, 255, 0.14) !important;
-    border-color: rgba(102, 126, 234, 0.5) !important;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.18), 0 6px 20px rgba(0, 0, 0, 0.15) !important;
-}
-/* Retire le soulignement PatternFly du champ */
-:host(ak-library-impl) input[part="search-input"].pf-c-form-control::after,
-:host(ak-library-impl) input[part="search-input"].pf-c-form-control::before {
-    display: none !important;
-}
-:host(ak-library-impl) input[part="search-input"]::-webkit-search-cancel-button {
-    filter: invert(1) !important;
-    opacity: 0.7 !important;
-    cursor: pointer !important;
-}
-
-/* ---------- Bouton grille / liste : rond en verre ---------- */
-:host(ak-library-impl) [part="view-toggle"] {
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 50% !important;
-    width: 44px !important;
-    height: 44px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    transition: all 0.25s ease !important;
-}
-:host(ak-library-impl) [part="view-toggle"]:hover,
-:host(ak-library-impl) [part="view-toggle"]:focus-visible {
-    background: rgba(255, 255, 255, 0.18) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    transform: translateY(-2px) !important;
-}
-:host(ak-library-impl) [part="view-toggle"]::after,
-:host(ak-library-impl) [part="view-toggle"]::before {
-    border: none !important;
-}
-
-/* ---------- Infobulles (pf-tooltip) ----------
-   Le style interne de pf-tooltip est privé (forme/bordure inaccessibles depuis le thème).
-   On rend l'infobulle d'origine invisible via ses variables, et on dessine la nôtre en ::after
-   sur l'élément pf-tooltip lui-même, avec le texte de son attribut "content" (même libellé). */
-pf-tooltip {
-    --pf-c-tooltip__content--BackgroundColor: transparent !important;
-    --pf-c-tooltip__content--Color: transparent !important;
-    --pf-c-tooltip--BoxShadow: none !important;
-    position: relative !important;
-}
-pf-tooltip[content]::after {
-    content: attr(content);
-    position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    z-index: 1000;
-    transform: translate(-50%, -4px);
-    opacity: 0;
-    pointer-events: none;
-    white-space: nowrap;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: normal;
-    text-transform: none;
-    color: #ffffff;
-    text-shadow: none;
-    padding: 7px 14px;
-    background: rgba(18, 20, 26, 0.55);
-    -webkit-backdrop-filter: blur(22px) saturate(140%);
-    backdrop-filter: blur(22px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-button:hover pf-tooltip[content]::after,
-button:focus-visible pf-tooltip[content]::after,
-a:hover pf-tooltip[content]::after,
-a:focus-visible pf-tooltip[content]::after {
-    opacity: 1;
-    transform: translate(-50%, 0);
-}
-/* ---------- Alignement : en-tête (titre, bouton, recherche) sur les bords des lignes/cartes ----------
-   Les lignes sont décalées par le padding de la section + la marge des groupes (16px), l'en-tête
-   avait son propre padding. On impose une gouttière unique : 40px + 16px = 56px des deux côtés. */
-@media (min-width: 768px) {
-    :host(ak-library-impl) {
-        --library-gutter: 56px;
-    }
-    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__header {
-        padding-inline: var(--library-gutter) !important;
-    }
-    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__main-section {
-        padding-inline: calc(var(--library-gutter) - 16px) !important;
-    }
-    :host(ak-library-impl) [part="app-list"] .ak-c-fieldset {
-        margin-inline: 16px !important;
-    }
-}
-/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - END ===== */
-
 /* ===== USER SWITCHER (authentik 2026.8+) - BEGIN ===== */
 /* Menu "changer d'utilisateur" (ak-user-switcher), même style verre sombre que le sélecteur de langue. */
 
@@ -2806,3 +2627,322 @@ a:focus-visible pf-tooltip[content]::after {
     pointer-events: none !important;
 }
 /* ===== USER SWITCHER (authentik 2026.8+) - END ===== */
+
+/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - BEGIN ===== */
+
+/* ---------- Vue liste : chaque application = une ligne en verre (même style que les cartes) ---------- */
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-group-rows {
+    row-gap: 10px !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    padding: 10px 16px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:last-child {
+    border-block-end: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:hover,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:focus-within {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row[aria-selected="true"] {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row a,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-title"],
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-text"] {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row [part="row-meta"] {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+/* Séparateurs de groupes : discrets */
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] [part="app-group-separator"] {
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin: 18px 0 !important;
+}
+
+/* ---------- Barre de recherche : pilule en verre ---------- */
+:host(ak-library-impl) input[part="search-input"],
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #ffffff !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    box-sizing: border-box !important;
+    padding: 0 20px !important;
+    font-size: 15px !important;
+    line-height: 44px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    transition: all 0.25s ease !important;
+    outline: none !important;
+}
+:host(ak-library-impl) input[part="search-input"]::placeholder {
+    color: rgba(255, 255, 255, 0.55) !important;
+    font-style: normal !important;
+}
+:host(ak-library-impl) input[part="search-input"]:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+}
+:host(ak-library-impl) input[part="search-input"]:focus {
+    background: var(--glass-sheen-hover), var(--glass-tint-hover) !important;
+    border-color: var(--glass-border-hover) !important;
+    box-shadow: var(--glass-shadow) !important;
+    outline: none !important;
+}
+/* Retire le soulignement PatternFly du champ */
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control::after,
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control::before {
+    display: none !important;
+}
+:host(ak-library-impl) input[part="search-input"]::-webkit-search-cancel-button {
+    filter: invert(1) !important;
+    opacity: 0.7 !important;
+    cursor: pointer !important;
+}
+
+/* ---------- Bouton grille / liste : rond en verre ---------- */
+:host(ak-library-impl) [part="view-toggle"] {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: all 0.25s ease !important;
+}
+:host(ak-library-impl) [part="view-toggle"]:hover,
+:host(ak-library-impl) [part="view-toggle"]:focus-visible {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+:host(ak-library-impl) [part="view-toggle"]::after,
+:host(ak-library-impl) [part="view-toggle"]::before {
+    border: none !important;
+}
+
+/* ---------- Infobulles (pf-tooltip) ----------
+   Le style interne de pf-tooltip est privé (forme/bordure inaccessibles depuis le thème).
+   On rend l'infobulle d'origine invisible via ses variables, et on dessine la nôtre en ::after
+   sur l'élément pf-tooltip lui-même, avec le texte de son attribut "content" (même libellé). */
+pf-tooltip {
+    --pf-c-tooltip__content--BackgroundColor: transparent !important;
+    --pf-c-tooltip__content--Color: transparent !important;
+    --pf-c-tooltip--BoxShadow: none !important;
+    position: relative !important;
+}
+pf-tooltip[content]::after {
+    content: attr(content);
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -4px);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #ffffff;
+    text-shadow: none;
+    padding: 7px 14px;
+    background: rgba(18, 20, 26, 0.55);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+button:hover pf-tooltip[content]::after,
+button:focus-visible pf-tooltip[content]::after,
+a:hover pf-tooltip[content]::after,
+a:focus-visible pf-tooltip[content]::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+/* ---------- Alignement : en-tête (titre, bouton, recherche) sur les bords des lignes/cartes ----------
+   Les lignes sont décalées par le padding de la section + la marge des groupes (16px), l'en-tête
+   avait son propre padding. On impose une gouttière unique : 40px + 16px = 56px des deux côtés. */
+@media (min-width: 768px) {
+    :host(ak-library-impl) {
+        --library-gutter: 56px;
+    }
+    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__header {
+        padding-inline: var(--library-gutter) !important;
+    }
+    :host(ak-library-impl) .pf-c-page__main > .pf-c-page__main-section {
+        padding-inline: calc(var(--library-gutter) - 16px) !important;
+    }
+    :host(ak-library-impl) [part="app-list"] .ak-c-fieldset {
+        margin-inline: 16px !important;
+    }
+}
+/* ---------- Vrai effet verre (lisible sur fonds clairs) ----------
+   Avant : blanc à 8 % seulement -> presque invisible sur une image claire.
+   Maintenant : teinte sombre + reflet en dégradé + flou saturé + liseré lumineux.
+   Réglages centralisés : modifier les variables ci-dessous pour éclaircir / assombrir. */
+:host {
+    /* Verre ADAPTATIF : le flou assombrit et sature ce qui est DERRIÈRE la boîte,
+       donc la teinte suit la couleur du fond. Le voile ajouté reste léger. */
+    --glass-tint: rgba(16, 18, 24, 0.16);
+    --glass-tint-hover: rgba(16, 18, 24, 0.10);
+    --glass-filter: blur(22px) saturate(135%) brightness(0.88);
+    --glass-filter-hover: blur(22px) saturate(145%) brightness(0.94);
+    --glass-sheen: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0) 100%);
+    --glass-sheen-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 60%, rgba(255, 255, 255, 0.01) 100%);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-border-hover: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --glass-shadow-hover: 0 10px 26px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    --glass-input-tint: rgba(16, 18, 24, 0.20);
+}
+/* Cartes (vue grille), lignes (vue liste), recherche, bouton grille/liste */
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row,
+:host(ak-library-impl) input[part="search-input"],
+:host(ak-library-impl) input[part="search-input"].pf-c-form-control,
+:host(ak-library-impl) [part="view-toggle"] {
+    background: var(--glass-sheen), var(--glass-tint) !important;
+    border-color: var(--glass-border) !important;
+    -webkit-backdrop-filter: var(--glass-filter) !important;
+    backdrop-filter: var(--glass-filter) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row {
+    border-block-end-color: var(--glass-border) !important;
+}
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable:hover,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:hover,
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row:focus-within,
+:host(ak-library-impl) input[part="search-input"]:hover,
+:host(ak-library-impl) [part="view-toggle"]:hover,
+:host(ak-library-impl) [part="view-toggle"]:focus-visible {
+    background: var(--glass-sheen-hover), var(--glass-tint-hover) !important;
+    border-color: var(--glass-border-hover) !important;
+    box-shadow: var(--glass-shadow-hover) !important;
+    -webkit-backdrop-filter: var(--glass-filter-hover) !important;
+    backdrop-filter: var(--glass-filter-hover) !important;
+}
+:host(ak-library-impl) [part="app-list"][data-view-mode="list"] .app-row[aria-selected="true"] {
+    background: var(--glass-sheen-hover), var(--glass-tint-hover) !important;
+    border-color: rgba(255, 255, 255, 0.38) !important;
+}
+:host(ak-library-impl) input[part="search-input"]:focus {
+    background: var(--glass-sheen-hover), var(--glass-tint-hover) !important;
+    border-color: var(--glass-border-hover) !important;
+    box-shadow: var(--glass-shadow) !important;
+    outline: none !important;
+}
+/* ---------- Plus de bleu : sélection / focus / survol en blanc ----------
+   Authentik colore la carte sélectionnée, la ligne sélectionnée, le bouton ⋮ et le focus clavier
+   avec la variable --ak-accent (bleu). On la passe en blanc, et on retire le soulignement des titres. */
+:host(ak-library-impl) {
+    --ak-accent: rgba(255, 255, 255, 0.85) !important;
+}
+:host(ak-library-impl) [part="card-wrapper"][aria-selected="true"] {
+    outline: 2px solid rgba(255, 255, 255, 0.7) !important;
+    outline-offset: 3px !important;
+    border-radius: 22px !important;
+}
+:host(ak-library-impl) :focus-visible {
+    outline-color: rgba(255, 255, 255, 0.7) !important;
+}
+:host(ak-library-impl) a,
+:host(ak-library-impl) a:hover,
+:host(ak-library-impl) a:focus,
+:host(ak-library-impl) a:hover .pf-c-card__title,
+:host(ak-library-impl) a:focus .pf-c-card__title,
+:host(ak-library-impl) .pf-c-card__title,
+:host(ak-library-impl) [part="card-title"],
+:host(ak-library-impl) .app-row-link:hover .row-title,
+:host(ak-library-impl) .app-row-link:focus-visible .row-title,
+:host(ak-library-impl) [part="row-title"] {
+    text-decoration: none !important;
+}
+:host(ak-library-impl) [part="card-header-actions-button"]:hover,
+:host(ak-library-impl) [part="card-header-actions-button"]:focus-visible {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+}
+:host(ak-library-impl) input[name="application-search"]:focus,
+:host(ak-library-impl) input[name="application-search"]:hover {
+    --pf-c-form-control--BorderBottomColor: rgba(255, 255, 255, 0.45) !important;
+}
+/* ---------- Paramètres utilisateur : même verre adaptatif ---------- */
+:host(ak-user-settings) .pf-c-card,
+:host(ak-user-settings) .pf-c-card:hover,
+:host(ak-user-settings-flow-executor) .pf-c-card,
+:host(ak-user-settings-flow-executor) .pf-c-card:hover,
+:host(ak-user-settings-password) .pf-c-card,
+:host(ak-user-settings-password) .pf-c-card:hover {
+    background: var(--glass-sheen), var(--glass-tint) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+/* ak-user-settings : le flou reste sur ::before (correctif des modales), on l'y rend adaptatif */
+:host(ak-user-settings) .pf-c-card::before,
+:host(ak-user-settings) .pf-c-card.pf-m-hoverable::before,
+:host(ak-user-settings) .pf-c-card:hover::before {
+    -webkit-backdrop-filter: var(--glass-filter) !important;
+    backdrop-filter: var(--glass-filter) !important;
+}
+:host(ak-user-settings-flow-executor) .pf-c-card,
+:host(ak-user-settings-password) .pf-c-card {
+    -webkit-backdrop-filter: var(--glass-filter) !important;
+    backdrop-filter: var(--glass-filter) !important;
+}
+/* Champs des formulaires des paramètres (détails, mot de passe...) */
+:host(ak-stage-prompt) .pf-c-form-control,
+:host(ak-stage-prompt) select,
+:host(ak-user-stage-prompt) .pf-c-form-control,
+:host(ak-user-stage-prompt) select,
+:host(ak-form-element-horizontal) select {
+    background: var(--glass-input-tint) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #ffffff !important;
+}
+:host(ak-stage-prompt) .pf-c-form-control:focus,
+:host(ak-user-stage-prompt) .pf-c-form-control:focus {
+    border-color: var(--glass-border-hover) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+/* Recherche : un seul contour, même au focus (pas d'anneau ni de trait PatternFly en plus) */
+:host(ak-library-impl) input[part="search-input"]:focus,
+:host(ak-library-impl) input[part="search-input"]:focus-visible {
+    outline: none !important;
+    --pf-c-form-control--focus--BorderBottomColor: transparent !important;
+    --pf-c-form-control--focus--PaddingBottom: 0 !important;
+    --pf-c-form-control--focus--BorderBottomWidth: 0 !important;
+}
+/* ===== LIBRARY LIST VIEW + SEARCH + TOOLTIPS (authentik 2026.8+) - END ===== */
